@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anastatica hierochuntica — Molecular Docking Pipeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="rose-bg"><img src="assets/jericho-rose.svg" alt=""></div>
+  <div class="rose-bg left"><img src="assets/jericho-rose.svg" alt=""></div>
+  <div class="wrap hero-content">
+    <div class="eyebrow">Undergraduate research &middot; digital poster companion</div>
+    <h1>Anastatica hierochuntica</h1>
+    <p class="subtitle">A computational drug-discovery pipeline screening <b>7 bioactive compounds</b> against <b>COX-2, VEGFR-2 and PPAR-&gamma;</b> &mdash; from SwissADME and SwissTargetPrediction through AutoDock Vina docking and comparative analysis.</p>
+
+    <div class="target-row">
+      <div class="target-pill">COX-2 &middot; <b>PDB 5IKT</b></div>
+      <div class="target-pill">VEGFR-2 &middot; <b>PDB 4ASD</b></div>
+      <div class="target-pill">PPAR-&gamma; &middot; <b>PDB 4EMA</b></div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://www.canva.com/design/DAHMNC_i3Ng/7BEe8DsWJOzpnXslvg5q8Q/edit" target="_blank" rel="noopener">View full poster (Canva)</a>
+      <a class="btn btn-outline" href="https://github.com/Mohamed-Mostafa-21/Anastatica-Hierochuntica-Poster-" target="_blank" rel="noopener">Project repository (GitHub)</a>
+    </div>
+
+    <div class="team-label">Research team</div>
+    <div class="team">
+      <div class="member"><div class="name">Elaria Raaft Kot</div><div class="id">200028430</div></div>
+      <div class="member"><div class="name">Mohamed Mostafa Abdelsalam</div><div class="id">200024526</div></div>
+      <div class="member"><div class="name">Abdel Rahman Alaa Rashad</div><div class="id">200025826</div></div>
+      <div class="member"><div class="name">Afnan Ahmed Mohamed</div><div class="id">200035247</div></div>
+      <div class="member"><div class="name">Habeba Rabeh Mohammed</div><div class="id">200026588</div></div>
+      <div class="member"><div class="name">Fayrouz Osama Hamda</div><div class="id">200029447</div></div>
+    </div>
+    <div class="supervisor">Under the supervision of <b>Dr. Amal Mahfouz</b></div>
+  </div>
+</div>
+
+<!-- ============ PIPELINE ============ -->
+<div class="wrap pipeline-section">
+
+  <div class="section-head">
+    <div class="kicker">Methodology</div>
+    <h2>The docking pipeline, step by step</h2>
+  </div>
+
+  <div class="pipeline">
+
+  <!-- STEP 1 -->
+  <div class="step" data-open="false">
+    <div class="badge">1</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">Source library</div>
+        <div class="name">Bioactive compound library</div>
+        <div class="tagline">7 phytochemicals from A. hierochuntica</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>The candidate set comprises seven bioactive compounds spanning flavonoids, a flavonolignan pair, and a phytosterol &mdash; selected from the phytochemical profile of <em>Anastatica hierochuntica</em>, a desert "resurrection plant" long used in traditional medicine.</p>
+        <ul class="compound-grid">
+          <li>Isosilybin A <span>flavonolignan</span></li>
+          <li>Isosilybin B <span>flavonolignan</span></li>
+          <li>Luteolin <span>flavone</span></li>
+          <li>Kaempferol <span>flavonol</span></li>
+          <li>Naringenin <span>flavanone</span></li>
+          <li>Rutin <span>flavonol glycoside</span></li>
+          <li>&beta;-Sitosterol <span>phytosterol</span></li>
+        </ul>
+        <p>This library feeds into <b>ADME screening</b> and <b>target prediction</b> before any structure-based work begins.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step" data-open="false">
+    <div class="badge">2</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">In-silico screening</div>
+        <div class="name">SwissADME screening</div>
+        <div class="tagline">Drug-likeness &amp; ADMET filtering</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>Each compound was submitted to <b>SwissADME</b> to evaluate physicochemical properties, pharmacokinetic behaviour, and oral bioavailability before committing to structure-based docking.</p>
+        <div class="chips">
+          <span class="chip accent">Lipinski rule of 5</span>
+          <span class="chip accent">Veber rule</span>
+          <span class="chip">TPSA</span>
+          <span class="chip">logP</span>
+          <span class="chip">GI absorption</span>
+          <span class="chip">Bioavailability score</span>
+        </div>
+
+        <div class="adme-grid">
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Quercetin</span><span class="mw">C15H10O7 &middot; 302.24 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m good">GI: High</span>
+              <span class="m good">Lipinski: 0 violations</span>
+              <span class="m">Consensus LogP 0.79</span>
+              <span class="m">TPSA 131.36 &Aring;&sup2;</span>
+              <span class="m">Bioavailability 0.55</span>
+              <span class="m">Soluble</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 1 alert (catechol_A) &middot; Brenk: 1 alert (catechol) &middot; Synthetic accessibility: 3.23</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Kaempferol</span><span class="mw">C15H10O6 &middot; 286.24 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m good">GI: High</span>
+              <span class="m good">Lipinski: 0 violations</span>
+              <span class="m">Consensus LogP 1.20</span>
+              <span class="m">TPSA 111.13 &Aring;&sup2;</span>
+              <span class="m">Bioavailability 0.55</span>
+              <span class="m">Soluble</span>
+              <span class="m">BBB: No</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 0 alerts &middot; Brenk: 0 alerts &middot; Synthetic accessibility: 3.14</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Luteolin</span><span class="mw">C15H10O6 &middot; 286.24 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m good">GI: High</span>
+              <span class="m good">Lipinski: 0 violations</span>
+              <span class="m">Consensus LogP 1.10</span>
+              <span class="m">TPSA 111.13 &Aring;&sup2;</span>
+              <span class="m">Bioavailability 0.55</span>
+              <span class="m">Soluble</span>
+              <span class="m">BBB: No</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 1 alert (catechol_A) &middot; Brenk: 1 alert (catechol) &middot; Synthetic accessibility: 3.02</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Naringenin</span><span class="mw">C15H12O5 &middot; 272.25 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m good">GI: High</span>
+              <span class="m good">Lipinski: 0 violations</span>
+              <span class="m">Consensus LogP 1.87</span>
+              <span class="m">TPSA 86.99 &Aring;&sup2;</span>
+              <span class="m">Bioavailability 0.55</span>
+              <span class="m">Soluble</span>
+              <span class="m">BBB: No</span>
+              <span class="m">P-gp substrate: Yes</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 0 alerts &middot; Brenk: 0 alerts &middot; Synthetic accessibility: 3.01</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Rutin</span><span class="mw">C27H30O16 &middot; 610.52 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m">GI: Low</span>
+              <span class="m">Lipinski: 3 violations (MW&gt;500, NorO&gt;10, NHorOH&gt;5)</span>
+              <span class="m">Consensus LogP &minus;2.74</span>
+              <span class="m">TPSA 269.43 &Aring;&sup2;</span>
+              <span class="m">Bioavailability 0.17</span>
+              <span class="m">Soluble</span>
+              <span class="m">BBB: No</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 1 alert (catechol_A) &middot; Brenk: 1 alert (catechol) &middot; Synthetic accessibility: 6.52</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">&beta;-Sitosterol</span><span class="mw">C29H50O &middot; 414.71 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m">GI: Low</span>
+              <span class="m">Lipinski: 1 violation (MLOGP&gt;4.15)</span>
+              <span class="m">Consensus LogP 7.78</span>
+              <span class="m">TPSA 20.23 &Aring;&sup2;</span>
+              <span class="m good">Bioavailability 0.55</span>
+              <span class="m">Poorly soluble</span>
+              <span class="m">BBB: No</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 0 alerts &middot; Brenk: 1 alert (isolated alkene) &middot; Synthetic accessibility: 6.30</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Isosilybin A</span><span class="mw">C25H22O10 &middot; 482.44 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m">GI: Low</span>
+              <span class="m good">Lipinski: 0 violations</span>
+              <span class="m">Consensus LogP 1.28</span>
+              <span class="m">TPSA 155.14 &Aring;&sup2;</span>
+              <span class="m good">Bioavailability 0.55</span>
+              <span class="m">Moderately soluble</span>
+              <span class="m">BBB: No</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 0 alerts &middot; Brenk: 0 alerts &middot; Synthetic accessibility: 4.92</div></details>
+          </div>
+
+          <div class="adme-card">
+            <div class="adme-top"><span class="name">Isosilybin B</span><span class="mw">C25H22O10 &middot; 482.44 g/mol</span></div>
+            <div class="adme-metrics">
+              <span class="m">GI: Low</span>
+              <span class="m good">Lipinski: 0 violations</span>
+              <span class="m">Consensus LogP 1.28</span>
+              <span class="m">TPSA 155.14 &Aring;&sup2;</span>
+              <span class="m good">Bioavailability 0.55</span>
+              <span class="m">Moderately soluble</span>
+              <span class="m">BBB: No</span>
+            </div>
+            <details><summary>Show medicinal chemistry alerts</summary><div class="alerts">PAINS: 0 alerts &middot; Brenk: 0 alerts &middot; Synthetic accessibility: 4.92 &middot; 2D-derived properties are identical to isosilybin A (diastereomers)</div></details>
+          </div>
+
+        </div>
+
+        <p>The flavonoid aglycones and isosilybins (quercetin, kaempferol, luteolin, naringenin, isosilybin A/B) are fully Lipinski-compliant with high GI absorption and a 0.55 bioavailability score. &beta;-Sitosterol carries one Lipinski violation (MLOGP&gt;4.15, reflecting its lipophilicity) but still scores 0.55. Rutin, the glycoside, shows the expected TPSA / H-bond-donor related violations. All seven were carried forward for target prediction and docking.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step" data-open="false">
+    <div class="badge">3</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">In-silico screening</div>
+        <div class="name">SwissTargetPrediction</div>
+        <div class="tagline">Converging on 3 protein targets</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>Per-compound target probability rankings from <b>SwissTargetPrediction</b> consistently surfaced three targets across the library &mdash; selected as the comparative docking panel:</p>
+        <div class="chips">
+          <span class="chip accent">PPAR-&gamma; (PPARG)</span>
+          <span class="chip accent">COX-2 (PTGS2)</span>
+          <span class="chip accent">VEGFR-2 (KDR)</span>
+        </div>
+        <p><b>PPAR-&gamma;</b> was the top hit for the flavonols (quercetin, kaempferol, luteolin, &asymp;0.88&ndash;1.0 probability) &mdash; pointing toward an M1&rarr;M2 macrophage polarization mechanism. <b>COX-2 / PTGS2</b> was prominent for rutin (&asymp;0.65) and the isosilybins. <b>VEGFR-2 / KDR</b> ranked highest for isosilybin A and B (&asymp;0.40&ndash;0.43), consistent with a pro-angiogenic wound-healing role.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step" data-open="false">
+    <div class="badge">4</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">Structure preparation</div>
+        <div class="name">Target structure prep</div>
+        <div class="tagline">3 PDB structures, co-crystal extraction</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>Each receptor structure was retrieved from the PDB, cleaned in <b>PyMOL</b> (solvent and co-crystal ligand removed), and the bound reference ligand was extracted separately to define the docking grid box.</p>
+        <div class="target-cards">
+          <div class="target-card">
+            <div class="t-head">COX-2 <span>PDB 5IKT</span></div>
+            <div class="t-ref">Co-crystal reference: <b>Celecoxib</b></div>
+            <div class="t-files">5IKT_receptor_clean.pdbqt</div>
+            <div class="pymol-fig">
+              <img src="assets/figures/5IKT_celecoxib.png" alt="PyMOL render of celecoxib docked into the COX-2 (5IKT) binding pocket">
+              <div class="cap">PyMOL &middot; celecoxib (yellow) re-docked into COX-2 (5IKT), best pose &minus;9.5 kcal/mol, pocket residues in grey</div>
+            </div>
+          </div>
+          <div class="target-card">
+            <div class="t-head">VEGFR-2 <span>PDB 4ASD</span></div>
+            <div class="t-ref">Co-crystal reference: <b>Sorafenib</b></div>
+            <div class="t-files">4ASD_receptor_vina_1.pdbqt</div>
+            <div class="pymol-fig">
+              <img src="assets/figures/4ASD_sorafenib.png" alt="PyMOL render of sorafenib docked into the VEGFR-2 (4ASD) binding pocket">
+              <div class="cap">PyMOL &middot; sorafenib (yellow) re-docked into VEGFR-2 (4ASD), best pose &minus;11.5 kcal/mol, pocket residues in grey</div>
+            </div>
+          </div>
+          <div class="target-card">
+            <div class="t-head">PPAR-&gamma; <span>PDB 4EMA</span></div>
+            <div class="t-ref">Co-crystal reference: <b>Rosiglitazone</b></div>
+            <div class="t-files">4EMA_receptor_clean.pdb / .pdbqt &middot; rosiglitazone_4EMA.pdb</div>
+            <div class="pymol-fig">
+              <img src="assets/figures/4EMA_rosiglitazone.png" alt="PyMOL render of rosiglitazone in the PPAR-gamma (4EMA) binding pocket">
+              <div class="cap">PyMOL &middot; co-crystallized rosiglitazone (yellow) in the PPAR-&gamma; (4EMA) ligand-binding domain, pocket residues in grey</div>
+            </div>
+          </div>
+        </div>
+        <p>Grid box centre and dimensions were derived from each extracted reference ligand using PyMOL's <span class="chip" style="font-size:11px; padding:2px 6px;">get_extent</span> / <span class="chip" style="font-size:11px; padding:2px 6px;">get_position</span>. For PPAR-&gamma; (4EMA): centre (14.784, 7.082, 44.504), size 20&times;20&times;22&nbsp;&Aring;.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 5 -->
+  <div class="step" data-open="false">
+    <div class="badge">5</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">Structure preparation</div>
+        <div class="name">Ligand preparation</div>
+        <div class="tagline">PDBQT conversion via OpenBabel</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>All 7 AH compounds plus the 3 co-crystal reference ligands (celecoxib, sorafenib, rosiglitazone) were converted from SDF/PDB to <b>PDBQT</b> format ahead of docking.</p>
+        <div class="chips">
+          <span class="chip accent">OpenBabel GUI</span>
+          <span class="chip">Explicit hydrogens added</span>
+          <span class="chip">--partialcharge gasteiger</span>
+        </div>
+        <div class="file-list">
+          <b>AH compound ligands:</b> Isosilybin_A.pdbqt, Isosilybin_B.pdbqt, Kaempferol.pdbqt, Luteolin.pdbqt, Naringenin.pdbqt, Rutin.pdbqt, Sitosterol.pdbqt<br>
+          <b>Reference ligands (docked):</b> celecoxib_docked.pdbqt, sorafenib_docked.pdbqt, rosiglitazone (4EMA)
+        </div>
+        <p>This conversion step assigns AutoDock atom types and Gasteiger partial charges &mdash; required by Vina's scoring function &mdash; for every ligand and reference compound.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 6 -->
+  <div class="step" data-open="false">
+    <div class="badge">6</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">Docking</div>
+        <div class="name">Molecular docking</div>
+        <div class="tagline">AutoDock Vina via PyRx / MGLTools</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>Each of the 7 AH compounds &mdash; plus each receptor's own co-crystal reference ligand &mdash; was docked into its fixed grid box using <b>AutoDock Vina</b>, run through <b>PyRx</b> / <b>MGLTools</b>.</p>
+        <div class="chips">
+          <span class="chip accent">3 targets &times; 7 compounds = 21 dockings</span>
+          <span class="chip">+ 3 reference re-docks</span>
+          <span class="chip">Best-pose &Delta;G retained</span>
+        </div>
+        <p>For each complex, the lowest-energy binding mode (kcal/mol) was carried forward into the affinity comparison and residue-interaction analysis below.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 7 -->
+  <div class="step" data-open="false">
+    <div class="badge">7</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">Results</div>
+        <div class="name">Binding affinity &amp; contacts</div>
+        <div class="tagline">All 21 dockings, ranked per target</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>Best-pose binding affinities (kcal/mol) for all seven compounds against each target. Each row shows the top 5 closest residue contacts (&le;3.5&nbsp;&Aring;) &mdash; tap "show all contacts" for the complete interaction list. The dashed row is the receptor's own co-crystal reference ligand.</p>
+
+        <div class="result-block">
+          <h4>COX-2 <span class="pdb">PDB 5IKT &middot; ref. Celecoxib</span></h4>
+
+          <div class="row best">
+            <div class="row-top"><div class="name"><span class="tag-best">best</span>Isosilybin A</div><div class="aff">&minus;9.4</div></div>
+            <span class="top5">Tyr355(2.15), Gln350(2.16), Phe580(2.25), His90(2.69), Gln192(2.78)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">His90(2.69), Thr94(3.12), His95(3.75), Gln192(2.78), Glu346(3.51), Asp347(3.42), Gln350(2.16), His351(3.03), Gly354(3.36), Tyr355(2.15), His356(3.05), Pro514(2.93), Ser579(3.51), Phe580(2.25), Ser581(3.5)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Isosilybin B</div><div class="aff">&minus;9.0</div></div>
+            <span class="top5">Gln350(1.98), His90(2.18), Phe580(2.92), Ser579(2.95), Pro514(2.96)</span>
+            <details><summary>Show all 16 contacts</summary><div class="all-contacts">His90(2.18), Thr94(3.26), His95(3.46), Gln192(3.18), Glu346(3.45), Asp347(3.43), Gln350(1.98), His351(3.37), Gly354(3.31), Tyr355(3.11), His356(3.18), Arg513(3.79), Pro514(2.96), Ser579(2.95), Phe580(2.92), Ser581(3.66)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Luteolin</div><div class="aff">&minus;7.9</div></div>
+            <span class="top5">Ser530(2.04), Tyr385(2.20), Val116(2.25), Met522(2.34), Leu531(2.74)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">Val116(2.25), Arg120(2.83), Tyr348(3.48), Val349(3.24), Leu352(3.32), Tyr355(3.28), Leu359(3.96), Tyr385(2.2), Trp387(3.46), Phe518(3.55), Met522(2.34), Val523(3.31), Ala527(3.45), Ser530(2.04), Leu531(2.74)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Kaempferol</div><div class="aff">&minus;7.8</div></div>
+            <span class="top5">Ser530(2.14), Tyr385(2.28), Phe518(2.28), Val349(2.40), Tyr355(2.70)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">Val116(3.05), Arg120(3.4), Tyr348(3.42), Val349(2.4), Leu352(3.26), Tyr355(2.7), Leu359(3.57), Tyr385(2.28), Trp387(2.94), Phe518(2.28), Met522(2.77), Val523(3.17), Ala527(3.59), Ser530(2.14), Leu531(3.53)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Naringenin</div><div class="aff">&minus;7.7</div></div>
+            <span class="top5">Ser530(2.11), Met522(2.54), Tyr385(2.57), Val116(2.63), Phe518(2.86)</span>
+            <details><summary>Show all 14 contacts</summary><div class="all-contacts">Val116(2.63), Arg120(3.85), Val349(3.1), Leu352(3.21), Tyr355(3.22), Leu359(2.97), Tyr385(2.57), Trp387(3.47), Phe518(2.86), Met522(2.54), Val523(3.23), Ala527(3.32), Ser530(2.11), Leu531(3.68)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">&beta;-Sitosterol</div><div class="aff">&minus;7.2</div></div>
+            <span class="top5">Ser581(2.90), Asp347(3.11), Phe580(3.14), Ile564(3.16), Gln350(3.39)</span>
+            <details><summary>Show all 11 contacts</summary><div class="all-contacts">Pro191(3.48), Gln192(3.52), Asp347(3.11), Gln350(3.39), His351(3.4), Gly354(3.68), Asp515(3.48), Ile564(3.16), Ser579(3.45), Phe580(3.14), Ser581(2.9)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Rutin</div><div class="aff">&minus;6.3</div></div>
+            <span class="top5">Pro514(2.05), Ser581(2.17), His351(2.45), Gln192(2.49), Gly354(2.65)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">His90(3.33), Thr94(3.88), His95(3.15), Pro191(3.5), Gln192(2.49), Gln350(3.76), His351(2.45), Ser353(3.06), Gly354(2.65), Tyr355(3.93), His356(3.93), Pro514(2.05), Asp515(3.34), Ala516(3.26), Ser581(2.17)</div></details>
+          </div>
+
+          <div class="row ref"><div class="row-top"><div class="name">Celecoxib (reference)</div><div class="aff">&minus;9.5</div></div></div>
+        </div>
+
+        <div class="result-block">
+          <h4>VEGFR-2 <span class="pdb">PDB 4ASD &middot; ref. Sorafenib</span></h4>
+
+          <div class="row best">
+            <div class="row-top"><div class="name"><span class="tag-best">best</span>Isosilybin A</div><div class="aff">&minus;8.7</div></div>
+            <span class="top5">Asp814(2.06), Val898(2.29), Cys817(2.37), Ile1044(2.70), His1026(2.82)</span>
+            <details><summary>Show all 17 contacts</summary><div class="all-contacts">Asp814(2.06), Cys817(2.37), Glu818(3.36), Ala881(2.94), Ser884(3.17), Glu885(3.51), Ile888(3.86), Leu889(3.48), Ile892(3.37), Val898(2.29), Val899(2.84), Leu1019(3.25), Ile1025(2.89), His1026(2.82), Ile1044(2.7), Cys1045(3.62), Asp1046(3.52)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Luteolin</div><div class="aff">&minus;8.5</div></div>
+            <span class="top5">Cys919(1.92), Asp1046(2.12), Cys1045(2.56), Glu885(2.63), Leu840(2.70)</span>
+            <details><summary>Show all 16 contacts</summary><div class="all-contacts">Leu840(2.7), Val848(3.58), Ala866(3.58), Lys868(2.72), Glu885(2.63), Leu889(3.95), Val899(2.99), Val916(3.31), Glu917(2.89), Phe918(3.26), Cys919(1.92), Gly922(3.5), Leu1035(3.45), Cys1045(2.56), Asp1046(2.12), Phe1047(3.11)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Rutin</div><div class="aff">&minus;8.5</div></div>
+            <span class="top5">His1026(2.14), Glu885(2.16), Lys868(2.24), Asp1046(2.25), Leu1049(2.28)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">Asp814(2.95), Glu815(2.34), Lys868(2.24), Ala881(3.15), Leu882(3.6), Glu885(2.16), Ile888(3.23), Ile1025(2.49), His1026(2.14), Arg1027(2.43), Asp1028(3.59), Asp1046(2.25), Gly1048(3.19), Leu1049(2.28), Ile1053(3.7)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Isosilybin B</div><div class="aff">&minus;8.3</div></div>
+            <span class="top5">Val898(2.21), Asp1046(2.35), Lys868(2.47), Asp814(2.50), Glu885(2.92)</span>
+            <details><summary>Show all 16 contacts</summary><div class="all-contacts">Asp814(2.5), Cys817(3.11), Glu818(3.16), Lys868(2.47), Ala881(3.02), Ser884(3.37), Glu885(2.92), Leu889(3.29), Ile892(3.58), Val898(2.21), Val899(3.34), Leu1019(3.57), His1026(3.68), Ile1044(3.0), Cys1045(3.68), Asp1046(2.35)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Kaempferol</div><div class="aff">&minus;8.3</div></div>
+            <span class="top5">Cys919(1.51), Phe918(2.42), Leu840(2.65), Glu917(2.75), Cys1045(2.80)</span>
+            <details><summary>Show all 13 contacts</summary><div class="all-contacts">Leu840(2.65), Val848(3.35), Ala866(3.52), Lys868(3.09), Val916(3.58), Glu917(2.75), Phe918(2.42), Cys919(1.51), Gly922(3.57), Leu1035(3.14), Cys1045(2.8), Asp1046(3.64), Phe1047(2.93)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Naringenin</div><div class="aff">&minus;8.2</div></div>
+            <span class="top5">Cys919(1.95), Lys868(2.20), Glu885(2.52), Leu840(2.67), Glu917(2.89)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">Leu840(2.67), Val848(3.49), Ala866(3.36), Lys868(2.2), Glu885(2.52), Val899(3.72), Val916(3.46), Glu917(2.89), Phe918(3.26), Cys919(1.95), Gly922(3.24), Leu1035(3.56), Cys1045(3.73), Asp1046(3.64), Phe1047(3.05)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">&beta;-Sitosterol</div><div class="aff">&minus;8.1</div></div>
+            <span class="top5">Leu1049(2.23), Leu1019(2.76), Ile1044(2.95), Lys868(3.17), Leu889(3.18)</span>
+            <details><summary>Show all 16 contacts</summary><div class="all-contacts">Asp814(3.86), Lys868(3.17), Ala881(3.41), Leu882(3.94), Ser884(3.42), Glu885(3.34), Ile888(3.5), Leu889(3.18), Ile892(3.71), Val898(3.78), Leu1019(2.76), His1026(3.32), Ile1044(2.95), Asp1046(3.26), Gly1048(3.71), Leu1049(2.23)</div></details>
+          </div>
+
+          <div class="row ref"><div class="row-top"><div class="name">Sorafenib (reference)</div><div class="aff">&minus;11.5</div></div></div>
+        </div>
+
+        <div class="result-block">
+          <h4>PPAR-&gamma; <span class="pdb">PDB 4EMA &middot; ref. Rosiglitazone</span></h4>
+
+          <div class="row best">
+            <div class="row-top"><div class="name"><span class="tag-best">best</span>&beta;-Sitosterol</div><div class="aff">&minus;8.3</div></div>
+            <span class="top5">Glu259(2.69), Ser342(2.69), Cys285(2.71), Gly258(2.87), Ile341(3.07)</span>
+            <details><summary>Show all 14 contacts</summary><div class="all-contacts">Gly258(2.87), Glu259(2.69), Gly284(3.28), Cys285(2.71), Arg288(3.17), Ser289(3.21), Ile326(3.51), Tyr327(3.68), Leu330(3.63), Val339(3.62), Ile341(3.07), Ser342(2.69), Met348(3.5), Met364(3.83)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Rutin</div><div class="aff">&minus;7.9</div></div>
+            <span class="top5">Glu259(2.06), Glu343(2.26), Ser342(2.29), Gly258(2.33), Met348(2.46)</span>
+            <details><summary>Show all 15 contacts</summary><div class="all-contacts">Ile249(2.94), Leu255(3.13), Gly258(2.33), Glu259(2.06), Asp260(3.02), Ile281(3.28), Gly284(3.77), Cys285(3.09), Arg288(2.92), Glu291(3.17), Leu333(2.8), Ile341(3.0), Ser342(2.29), Glu343(2.26), Met348(2.46)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Isosilybin A</div><div class="aff">&minus;7.6</div></div>
+            <span class="top5">Ser342(2.23), Glu343(2.65), Ile326(2.68), Ile341(2.75), Leu330(2.76)</span>
+            <details><summary>Show all 17 contacts</summary><div class="all-contacts">Leu228(3.71), Leu255(3.18), Arg280(3.67), Ile281(3.03), Gly284(3.02), Cys285(3.94), Arg288(2.89), Ile326(2.68), Met329(3.43), Leu330(2.76), Leu333(2.9), Leu340(3.16), Ile341(2.75), Ser342(2.23), Glu343(2.65), Gly344(3.35), Met348(3.98)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Luteolin</div><div class="aff">&minus;7.1</div></div>
+            <span class="top5">Glu291(2.11), Leu330(2.63), Met348(2.88), Cys285(2.89), Ser342(2.96)</span>
+            <details><summary>Show all 11 contacts</summary><div class="all-contacts">Ile281(3.45), Gly284(3.47), Cys285(2.89), Phe287(3.19), Arg288(3.33), Glu291(2.11), Leu330(2.63), Val339(3.51), Ile341(3.62), Ser342(2.96), Met348(2.88)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Naringenin</div><div class="aff">&minus;7.0</div></div>
+            <span class="top5">Ser342(2.06), Cys285(2.86), Met364(3.11), Arg280(3.16), Val339(3.20)</span>
+            <details><summary>Show all 13 contacts</summary><div class="all-contacts">Arg280(3.16), Ile281(3.25), Gly284(3.62), Cys285(2.86), Arg288(3.4), Leu330(3.48), Leu333(3.53), Val339(3.2), Leu340(3.25), Ile341(3.5), Ser342(2.06), Met348(3.92), Met364(3.11)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Isosilybin B</div><div class="aff">&minus;6.8</div></div>
+            <span class="top5">Cys285(2.26), Glu259(2.41), Leu330(2.41), Ser289(2.57), Ser342(2.61)</span>
+            <details><summary>Show all 13 contacts</summary><div class="all-contacts">Glu259(2.41), Asp260(3.17), Gly284(3.24), Cys285(2.26), Arg288(3.11), Ser289(2.57), Ile326(3.61), Tyr327(3.59), Leu330(2.41), Leu340(3.19), Ile341(3.05), Ser342(2.61), Met364(3.38)</div></details>
+          </div>
+
+          <div class="row">
+            <div class="row-top"><div class="name">Kaempferol</div><div class="aff">&minus;6.8</div></div>
+            <span class="top5">Glu291(2.65), Met348(2.77), Cys285(2.89), Gly284(2.93), Ser342(3.01)</span>
+            <details><summary>Show all 11 contacts</summary><div class="all-contacts">Ile281(3.57), Gly284(2.93), Cys285(2.89), Arg288(3.6), Glu291(2.65), Leu330(3.39), Val339(3.31), Ile341(3.62), Ser342(3.01), Met348(2.77), Met364(3.38)</div></details>
+          </div>
+
+          <div class="row ref"><div class="row-top"><div class="name">Rosiglitazone (reference)</div><div class="aff">&minus;8.5</div></div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 8 -->
+  <div class="step" data-open="false">
+    <div class="badge">8</div>
+    <div class="step-head" onclick="toggle(this)">
+      <div class="step-title">
+        <div class="label">Results</div>
+        <div class="name">Comparative analysis</div>
+        <div class="tagline">AH compounds vs clinical reference drugs</div>
+      </div>
+      <div class="chev">&#9662;</div>
+    </div>
+    <div class="step-body">
+      <div class="step-body-inner">
+        <p>Benchmarking the strongest AH binder per target against its receptor's co-crystallized clinical drug:</p>
+        <div class="callout"><b>COX-2:</b> Isosilybin A (&minus;9.4) sits within 0.1 kcal/mol of celecoxib (&minus;9.5) &mdash; essentially equivalent binding strength, sharing key contacts at Tyr355, Gln350 and the Ser530/Tyr385 sub-pocket region.</div>
+        <div class="callout"><b>VEGFR-2:</b> Isosilybin A (&minus;8.7) trails sorafenib (&minus;11.5) by ~2.8 kcal/mol &mdash; expected, since sorafenib is a purpose-designed kinase inhibitor with an extensive hinge-region contact network.</div>
+        <div class="callout"><b>PPAR-&gamma;:</b> &beta;-Sitosterol (&minus;8.3) closely approaches rosiglitazone (&minus;8.5), within Vina's typical error margin, anchored by Ser342 and Cys285 contacts shared across nearly all AH ligands at this target.</div>
+        <p>The isosilybin pair (A and B) and &beta;-sitosterol emerge as the most promising leads &mdash; isosilybin A in particular rivals an approved COX-2 inhibitor at the binding-affinity level, supporting further evaluation (e.g. MM-GBSA, MD simulation, in vitro assay).</p>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</div>
+
+<!-- ============ REFERENCES ============ -->
+<div class="wrap pipeline-section" id="references">
+  <div class="section-head">
+    <div class="kicker">Bibliography</div>
+    <h2>References</h2>
+  </div>
+
+  <div class="ref-group-label">Plant source &amp; phytochemistry</div>
+  <ol class="ref-list">
+    <li>Zin, S.R.M.; Kassim, N.M.; Alshawsh, M.A.; Hashim, N.E.; Mohamed, Z. Biological activities of <em>Anastatica hierochuntica</em> L.: A systematic review. <i>Biomedicine &amp; Pharmacotherapy</i> 2017, 91, 611&ndash;620. <a href="https://doi.org/10.1016/j.biopha.2017.05.011" target="_blank" rel="noopener">doi.org/10.1016/j.biopha.2017.05.011</a></li>
+    <li>Thotathil, V.; Sidiq, N.; Fakhroo, A.; Sreerama, L. Phytochemical Analysis of <em>Anastatica hierochuntica</em> and <em>Aerva javanica</em> Grown in Qatar: Their Biological Activities and Identification of Some Active Ingredients. <i>Molecules</i> 2023, 28, 3364. <a href="https://doi.org/10.3390/molecules28083364" target="_blank" rel="noopener">doi.org/10.3390/molecules28083364</a></li>
+  </ol>
+
+  <div class="ref-group-label">Compound &amp; structure databases</div>
+  <ol class="ref-list">
+    <li>PubChem (National Center for Biotechnology Information) &mdash; 3D SDF structures for all 7 ligands (Isosilybin A/B, Luteolin, Kaempferol, Naringenin, Rutin, &beta;-Sitosterol) and reference drugs (Celecoxib, Sorafenib, Rosiglitazone). <a href="https://pubchem.ncbi.nlm.nih.gov" target="_blank" rel="noopener">pubchem.ncbi.nlm.nih.gov</a></li>
+  </ol>
+
+  <div class="ref-group-label">In-silico screening tools</div>
+  <ol class="ref-list">
+    <li>Daina, A.; Michielin, O.; Zoete, V. SwissADME: a free web tool to evaluate pharmacokinetics, drug-likeness and medicinal chemistry friendliness of small molecules. <i>Scientific Reports</i> 2017, 7, 42717. <a href="https://doi.org/10.1038/srep42717" target="_blank" rel="noopener">doi.org/10.1038/srep42717</a></li>
+    <li>Daina, A.; Michielin, O.; Zoete, V. SwissTargetPrediction: updated data and new features for efficient prediction of protein targets of small molecules. <i>Nucleic Acids Research</i> 2019, 47(W1), W357&ndash;W364. <a href="https://doi.org/10.1093/nar/gkz382" target="_blank" rel="noopener">doi.org/10.1093/nar/gkz382</a></li>
+  </ol>
+
+  <div class="ref-group-label">Receptor structures &mdash; RCSB Protein Data Bank</div>
+  <ol class="ref-list">
+    <li>PDB <a href="https://www.rcsb.org/structure/5IKT" target="_blank" rel="noopener">5IKT</a> &mdash; Cyclooxygenase-2 (COX-2) in complex with celecoxib.</li>
+    <li>PDB <a href="https://www.rcsb.org/structure/4ASD" target="_blank" rel="noopener">4ASD</a> &mdash; Vascular Endothelial Growth Factor Receptor 2 (VEGFR-2, juxtamembrane + kinase domains) in complex with sorafenib (BAY 43-9006).</li>
+    <li>PDB <a href="https://www.rcsb.org/structure/4EMA" target="_blank" rel="noopener">4EMA</a> &mdash; Peroxisome Proliferator-Activated Receptor gamma (PPAR-&gamma;) in complex with rosiglitazone.</li>
+  </ol>
+
+  <div class="ref-group-label">Molecular modeling &amp; docking software</div>
+  <ol class="ref-list">
+    <li>Trott, O.; Olson, A.J. AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading. <i>Journal of Computational Chemistry</i> 2010, 31(2), 455&ndash;461.</li>
+    <li>Schr&ouml;dinger, LLC. The PyMOL Molecular Graphics System, Version 2.x.</li>
+    <li>O'Boyle, N.M.; Banck, M.; James, C.A.; Morley, C.; Vandermeersch, T.; Hutchison, G.R. Open Babel: An open chemical toolbox. <i>Journal of Cheminformatics</i> 2011, 3, 33.</li>
+    <li>Dallakyan, S.; Olson, A.J. Small-Molecule Library Screening by Docking with PyRx. <i>Methods in Molecular Biology</i> 2015, 1263, 243&ndash;250.</li>
+    <li>Morris, G.M. et al. AutoDock4 and AutoDockTools4: Automated docking with selective receptor flexibility (MGLTools). <i>Journal of Computational Chemistry</i> 2009, 30(16), 2785&ndash;2791.</li>
+  </ol>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <h3>Anastatica hierochuntica Docking Project</h3>
+    <p>This page is the digital companion to our printed poster &mdash; scan the QR code on the poster to revisit every stage of the pipeline, the full binding-affinity tables, and residue-level interaction data.</p>
+    <div class="links">
+      <a class="btn btn-primary" href="https://www.canva.com/design/DAHMNC_i3Ng/7BEe8DsWJOzpnXslvg5q8Q/edit" target="_blank" rel="noopener">View poster on Canva</a>
+      <a class="btn btn-outline" href="https://github.com/Mohamed-Mostafa-21/Anastatica-Hierochuntica-Poster-" target="_blank" rel="noopener">Source on GitHub</a>
+    </div>
+    <div class="divider"></div>
+    <p class="fine">Built with SwissADME, SwissTargetPrediction, PyMOL, OpenBabel and AutoDock Vina (PyRx / MGLTools).</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>
